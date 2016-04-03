@@ -6,7 +6,7 @@ using namespace std;
 class trie {
 	struct node {
 		map <char, node*> children;
-		int frequency;
+		double frequency;
 
 		node(int frequency = 0) : frequency(frequency) {}
 	};
@@ -34,11 +34,11 @@ public:
 	trie() : root(new node()) {}
 
 	void go(node* v1, node* v2, node* res, double (*f)(int, int)) {
-		//here you should set frequency for res
+		res->frequency = f(v1->frequency, v2->frequency);
 		for (auto e: v1->children) {
 			if (v2->children.count(e.first)) {
 				res->children[e.first] = new node();
-				go(v1->children[e.first], v2->children[e.first], res->children[e.first]);
+				go(v1->children[e.first], v2->children[e.first], res->children[e.first], f);
 			}
 		}
 	}
@@ -51,17 +51,34 @@ public:
 		return res;
 	}
 
-	double assess_tree(node* v, double (*f)(int, int)) {
-		//TODO
+	double assess_tree(node* v) {
+		double res = v->frequency;
+		for (auto e: v->children) {
+			res += assess_tree(e.second);
+		}
+		return res;
 	}
 
-	double assess_tree(double (*f)(int, int)) {
+	double assess_tree() {
 		return assess_tree(root);
+	}
+
+	void clean(node* v) {
+		for (auto e: v->children) {
+			clean(e.second);
+		}
+		delete v;
+	}
+
+	~trie() {
+		clean(root);
 	}
 };
 
 double assess(trie &a, trie &b, double (*f)(int, int)) {
-	return a.unite(b).assess(f);
+	trie u = a.unite(b, f);
+	double res = u.assess_tree();
+	return res;
 }
 
 vector <string> read_docs_list() {
@@ -118,11 +135,14 @@ int main() {
 			a[i].add_suffixes(docs[i][j]);
 		}
 	}
+	ofstream out(CATEGORY"_assessment_values.txt");
+	out.precision(6);
+	out << fixed;
 	for (int i = 0; i < a.size(); ++i) {
 		for (int j = 0; j < a.size(); ++j) {
-			cout << assess(a[i], a[j]) << ' ';
+			out << assess(a[i], a[j], [](int x, int y) -> double{return (x + y) / 2.0;}) << ' ';
 		}
-		cout << endl;
+		out << '\n';
 	}
 	return 0;
 }
