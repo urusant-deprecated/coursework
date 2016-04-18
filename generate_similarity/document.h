@@ -2,21 +2,19 @@
 #include <vector>
 
 class document {
-    std::string path;
-	std::vector <std::string> words;
-	std::string category;
-	trie suffix_tree;
+ public:
+  document(const std::string &path, const std::string &category);
+  ~document() {}
+  double get_similarity(document &other, double (*f)(int, int));
+ private:
+  std::string path_;
+  std::vector<std::string> words_;
+  std::string category_;
+  trie suffix_tree_;
 
-public:
-	void format();
-	void read();
-
-	void build_suffix_tree();
-
-	document(std::string path, std::string category);
-	~document();
-
-	double get_similarity(document &other, double (*f)(int, int));
+  void format();
+  void read();
+  void build_suffix_tree();
 };
 
-std::vector <document> read_docs();
+std::vector<document> read_docs();

@@ -2,32 +2,36 @@
 #include <memory>
 #include <string>
 
+//This class stores suffixes of all
+//words that were added to it as a trie,
+//annotating them with frequencies
 class trie {
-	
-	struct node {
-		std::map <char, std::shared_ptr <node>> children;
-		double frequency;
-		std::shared_ptr <node> parent;
+ public:
+  trie();
+  ~trie();
+  trie(const trie&);
+  trie& operator=(const trie &other);
+  void swap(trie&);
 
-		node() {}
-		node(std::shared_ptr <node> parent, int frequency);
-	};
+  void add_suffixes(const std::string&);
+  trie unite(const trie &other, double (*f)(int, int)) const;
+  double assess_tree() const;
+  double similarity(const trie &other, double (*f)(int, int)) const;
 
-	std::shared_ptr <node> root;
-	void add_string(const std::string &s);
+ private:
+  struct node {
+    std::map <char, std::shared_ptr<node>> children;
+    double frequency;
+    std::shared_ptr<node> parent;
 
-	void go(std::shared_ptr <node> v1, std::shared_ptr <node> v2,
-		std::shared_ptr <node> res, double (*f)(int, int));
-
-	double assess_tree(std::shared_ptr <node> v);
-public:
-	trie() : root(std::make_shared <node>()) {}
-	
-	void add_suffixes(const std::string &s);
-	
-	trie unite(const trie &other, double (*f)(int, int));
-	
-	double assess_tree();
-
-	double assess(trie &b, double (*f)(int, int));
+    node() {}
+    node(std::shared_ptr<node> parent);
+  };
+  std::shared_ptr<node> root_;
+  void add_string(const std::string&);
+  void unite(std::shared_ptr<node> vertex1, std::shared_ptr<node> vertex2,
+             std::shared_ptr<node> result, double (*f)(int, int)) const;
+  double assess_tree(std::shared_ptr<node> vertex) const;
+  void copy(std::shared_ptr<node> destination, const std::shared_ptr<node> source);
+  void clean(std::shared_ptr<node> vertex);
 };
