@@ -1,6 +1,8 @@
 #include <cmath>
 #include <string>
 
+static int BALANCE = 0;
+
 const std::string HOME_PATH = "/home/anton/Coursework/";
 const std::string ASSESSMENT_PATH = "assessment/";
 const std::string LIST_PATH = "docs_list.txt";

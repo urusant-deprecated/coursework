@@ -1,17 +1,25 @@
 #include "trie.h"
+#include "config.h"
+#include <iostream>
 
 trie::node::node(std::shared_ptr<node> parent) : parent(parent),
                                                  frequency(0) {}
-trie::trie() : root_(std::make_shared<node>(std::shared_ptr<node>())) {}
-
-void trie::clean(std::shared_ptr<node> vertex) {
-  for (auto element: vertex->children) {
-    clean(element.second);
-  }
-  vertex.reset();
+trie::trie() : root_(std::make_shared<node>(std::shared_ptr<node>())) {
+  //std::cerr << ++BALANCE << std::endl;
 }
 
-trie::~trie() {clean(root_);}
+void trie::clean(std::shared_ptr<node> vertex) {
+  while (!vertex->children.empty()) {
+    clean(vertex->children.begin()->second);
+    vertex->children.begin()->second.reset();
+    vertex->children.erase(vertex->children.begin());
+  }
+}
+
+trie::~trie() {
+  //std::cerr << --BALANCE << std::endl;
+  clean(root_);
+}
 
 void trie::copy(std::shared_ptr<node> destination,
                 const std::shared_ptr<node> source) {
@@ -23,6 +31,7 @@ void trie::copy(std::shared_ptr<node> destination,
 }
 
 trie::trie(const trie &other) : root_(std::make_shared<node>()) {
+  //std::cerr << ++BALANCE << std::endl;
   copy(root_, other.root_);
 }
 

@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 
+
 int main() {
   auto docs = read_docs();
   std::vector<std::vector<double>> similarity[TABLES];

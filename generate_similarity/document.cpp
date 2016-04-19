@@ -2,6 +2,8 @@
 #include "config.h"
 #include <fstream>
 
+//for debug
+#include <iostream>
 void document::format() {
   std::vector<std::string> formatted_doc(1);
   for (auto word: words_) {
