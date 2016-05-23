@@ -1,11 +1,8 @@
 #include "document.h"
-#include "config.h"
 #include <iostream>
-#include <fstream>
-
 
 int main() {
-  auto docs = read_docs();
+  std::vector <assessment_document> docs = read_docs<assessment_document>();
   std::vector<std::vector<double>> similarity[TABLES];
   for (int table = 0; table < TABLES; ++table) {
     similarity[table].resize(docs.size(), std::vector<double>(docs.size(), 0));

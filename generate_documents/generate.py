@@ -16,3 +16,15 @@ for document in stream_reuters_documents(PATH + REUTERS_PATH):
     good_documents.write(DOCUMENTS_PATH + str(document['id']) + ' ' + found_category + '\n')
     document_file = open(PATH + DOCUMENTS_PATH + str(document['id']), 'w')
     document_file.write(document['title'] + '\n' + document['body'])
+
+
+#a = dict()
+#for category in good_categories:
+#    a[category] = 0
+#for document in stream_reuters_documents(PATH + REUTERS_PATH):
+#    for category in good_categories:
+#        if category in document['topics']:
+#            a[category] += 1
+#
+#for e in a:
+#    print(e, a[e])
