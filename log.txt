@@ -1,0 +1,173 @@
+K-means
+
+Table 0
+445 earn
+235 earn
+348 earn
+3163 earn
+1218 acq
+913 earn
+878 acq
+960 acq
+0.523162
+
+Table 1
+39 earn
+102 earn
+247 earn
+4063 earn
+1086 earn
+687 earn
+1100 acq
+836 earn
+0.469608
+
+Table 2
+492 earn
+241 earn
+352 earn
+3053 earn
+1226 acq
+858 earn
+785 acq
+1153 acq
+0.516789
+
+Table 3
+325 earn
+192 earn
+298 earn
+3197 earn
+1121 acq
+1083 earn
+1080 acq
+864 acq
+0.514338
+
+Table 4
+1222 earn
+508 earn
+225 earn
+2493 acq
+1128 money-fx
+1230 earn
+177 acq
+1177 acq
+0.655392
+
+K-medoids
+
+Table 0
+220 earn
+274 earn
+407 earn
+4051 acq
+326 earn
+818 earn
+1772 acq
+292 earn
+0.545833
+
+Table 1
+106 earn
+147 earn
+429 earn
+6213 earn
+359 acq
+802 earn
+90 earn
+14 earn
+0.484681
+
+Table 2
+262 earn
+350 earn
+490 earn
+4809 acq
+454 earn
+791 earn
+523 acq
+481 earn
+0.575
+
+Table 3
+204 earn
+165 earn
+559 earn
+4722 acq
+206 earn
+749 earn
+1067 acq
+488 earn
+0.546569
+
+Table 4
+2318 earn
+522 earn
+309 earn
+2403 acq
+526 acq
+1062 earn
+129 acq
+891 acq
+0.648284
+
+Spectral clustering
+
+Table 0
+1215 acq
+1744 earn
+814 earn
+772 trade
+753 acq
+256 acq
+656 earn
+1950 grain
+0.6867647058823529
+
+Table 1
+1793 grain
+738 earn
+652 earn
+710 money-fx
+2148 earn
+1164 acq
+671 acq
+284 acq
+0.6938725490196078
+
+Table 2
+
+771 acq
+758 trade
+1241 acq
+255 acq
+694 earn
+1629 earn
+1993 grain
+819 earn
+0.6843137254901961
+
+Table 3
+
+1936 grain
+265 acq
+766 earn
+739 trade
+1219 acq
+720 acq
+1863 earn
+652 earn
+0.6922794117647059
+
+Table 4
+
+3055 acq
+1157 earn
+1512 trade
+792 earn
+332 interest
+502 earn
+297 grain
+513 earn
+0.6931372549019608
